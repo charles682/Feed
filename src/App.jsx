@@ -16,7 +16,12 @@ function App() {
             author="Charles Melo"
             content="lorem ipsum"
             />
+             <Post
+            author="Charles Melo"
+            content="lorem ipsum"
+            />
           </main>
+          
       </div>
      </div> 
   )
