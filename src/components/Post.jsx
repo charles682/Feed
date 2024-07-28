@@ -31,7 +31,12 @@ import styles from './Post.module.css';
     }
 
     function handleNewCommentChannge(){
+      event.target.setCustomValidity('');
       setNewCommwntText(event.target.value)
+    }
+
+    function handleNewCommentInvalid() {
+      event.target.setCustomValidity('Esse campo é obrigatório!');
     }
 
     function deleteComment(commentToDelete){
@@ -40,7 +45,8 @@ import styles from './Post.module.css';
       })
       setComments(commentsWithoutDeletedOne);
     }
-
+    
+    const isNewCommentEmpty = newCommentText.length === 0;
   return (
     <article className={styles.post}>
       <header>
@@ -75,10 +81,12 @@ import styles from './Post.module.css';
             placeholder="Deixe um comentário"
             value={newCommentText}
             onChange={handleNewCommentChannge}
+            onInvalid={handleNewCommentInvalid}
+            required
           />
 
           <footer>
-            <button type="submit">Publicar</button>
+            <button type="submit" disabled={isNewCommentEmpty}>Publicar</button>
           </footer>
       </form>
       <div className={styles.commentList}>
